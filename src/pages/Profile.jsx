@@ -149,7 +149,7 @@ const Profile = () => {
                 photoURL:  imageUrls[0]
             })
             setSpinnerLoader(false)
-            toast.success('profile successfilly uploaded')
+            
             window.location.reload()
             
             

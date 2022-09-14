@@ -146,12 +146,14 @@ const CreateListing = () => {
             })
         }
         
-        const imgUrls = await Promise.all(
+        const imgUrlsReverse = await Promise.all(
             [...images].map(image=> storeImage(image))
         ).catch(()=>{
             setLoading(false)
             toast.error('image not uploaded')
         })
+        const imgUrls = imgUrlsReverse.reverse();
+        
         const formDataCopy = {
             ...formData,
             imgUrls,

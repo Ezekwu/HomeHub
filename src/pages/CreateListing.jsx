@@ -153,7 +153,7 @@ const CreateListing = () => {
             toast.error('image not uploaded')
         })
         const imgUrls = imgUrlsReverse.reverse();
-        
+
         const formDataCopy = {
             ...formData,
             imgUrls,
@@ -384,6 +384,7 @@ const CreateListing = () => {
                                 className='address'
                                 type='text'
                                 rows='12'
+                                maxLength='35'
                                 id='address'
                                 value={address}
                                 onChange={onMutate}

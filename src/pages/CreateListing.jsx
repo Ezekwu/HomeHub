@@ -400,7 +400,7 @@ const CreateListing = () => {
                                 <input type="file" id='images' max='6' multiple required accept='.jpg,.png,.jpeg' onChange={onMutate} />
                         </div>
                     </div>
-                    <button type="submit">{loading ? <Spinner width={'25px'} height={'25px'}/> : 'Create Listing'}</button>
+                    <button type="submit" className="create-listing">{loading ? <Spinner width={'25px'} height={'25px'}/> : 'Create Listing'}</button>
             </form>
         </StyledCreateListing>
     )

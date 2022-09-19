@@ -168,6 +168,7 @@ const Profile = () => {
     return (
         profile &&
         <StyledProfile className='container'>
+            <h2 >My <span>Profile.</span></h2>
             <div >
                 
                 <div className="col-left">
@@ -179,9 +180,7 @@ const Profile = () => {
                         <input type="file" id='photoUrl' max='1' accept='.jpg,.png,.jpeg' onChange={onChange} />
                     </div>
 
-                    <Link to='/createListing' className='create-listing'>
-                        <p>sell or rent your home</p> <i className="fa-solid fa-arrow-right"></i>
-                    </Link>
+                    
 
                 </div>
                 <div className="profile-details col-right">
@@ -203,10 +202,14 @@ const Profile = () => {
                         
                         <button className='save-btn'  disabled={!formEnabled} >{spinnerLoader ?<Spinner width={'25px'} height={'25px'}/> : 'Save' } </button>
                     </form>
-                    <button onClick={onLogout}>log-out</button>
+                    
                 </div>
                 
             </div>
+            <Link to='/createListing' className='create-listing'>
+                        <p>sell or rent your home</p> <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+            <button onClick={onLogout}>log-out</button>
         </StyledProfile>
     )
 }

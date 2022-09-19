@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const StyledSignUp = styled.div`
     display: flex;
     
-    padding: .5rem 4rem 2rem;
+    padding: 2rem 4rem ;
     color: #3c3c3c;
 
     p{
@@ -22,6 +22,7 @@ export const StyledSignUp = styled.div`
         width: 100%;
         height: 620px;
         border-radius: 10px;
+        object-fit: cover;
     }
 
     .image-text{
@@ -126,4 +127,44 @@ export const StyledSignUp = styled.div`
         .signIn a:hover{
             text-decoration: underline;
         }
+
+        /* Media queries */
+
+        @media(max-width:1000px) {
+            .image-text{
+                padding: 2rem;
+                font-size: 1.5rem;
+            }
+        }
+        @media(max-width:900px){
+
+            input{
+                width: 100%;
+            }
+
+            button{
+                width: 100%;
+            }
+            .image-container {
+                width: 100%;
+            }
+
+            .or-container{
+                width: 100%;
+            }
+        }
+        @media(max-width:800px){
+            .image-container {
+                display: none;
+            }
+
+            @media(max-width:600px){
+                padding: 2rem ;
+                .form-container > div{
+                    width: 100%;
+                }
+            }
+
+
+}
 `

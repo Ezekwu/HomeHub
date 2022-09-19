@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
 export const StyledProfile = styled.div`
-        padding: 2rem 5rem;
+        padding-top: 2rem ;
+        padding-bottom: 2rem;
         color: #3c3c3c;
+
+        h2{
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
         
+        h2 span{
+            color: #3a5cee;
+        }
 
         
         & > div{
@@ -20,7 +30,7 @@ export const StyledProfile = styled.div`
             color: white;
             background-color: #3a5cee;
             cursor: pointer;
-            margin-top: 1.2rem;
+            margin-top: 2rem;
         }
         button:disabled{
             opacity: .7;
@@ -165,5 +175,33 @@ export const StyledProfile = styled.div`
         
         .save-btn{
             margin-right: auto;
+        }
+
+        @media(max-width: 1100px) {
+            & > div{
+                gap: 2rem;
+            }
+        }
+
+        @media(max-width: 950px) {
+            & > div{
+                flex-direction: column;
+                gap: 4rem;
+            }
+
+            .col-left{
+                width: 100%;
+            }
+        }
+
+        @media(max-width:650px) {
+            .col-1{
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .profile-pic-container img{
+                width: 150px;
+                height: 150px;
+            }
         }
 `

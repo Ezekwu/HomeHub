@@ -41,7 +41,7 @@ color: #3c3c3c;
     }
     textarea {
             resize: vertical;
-        }
+    }
 
     textarea:focus{
     outline: 1px solid #3a5cee;
@@ -67,6 +67,11 @@ color: #3c3c3c;
         transition: all .15s ease-in;
         cursor: pointer;
     } 
+
+    .create-listing:hover{
+        background-color: #263c9b !important;
+        transition: all .1s ease-in;
+    }
 
     
     .button-false{
@@ -104,5 +109,19 @@ color: #3c3c3c;
         margin-top: .85rem;
     }
 
+@media(max-width:800px) {
+    .row {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+}
 
+@media(max-width:600px){
+    form{
+        width: 100%;
+    }
+    .heading h1{
+        font-size: 1.8rem;
+    }
+}
 `

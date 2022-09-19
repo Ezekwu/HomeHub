@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import CreateListing from './pages/CreateListing';
 import Listing from './pages/Listing';
+import Contact from './pages/Contact';
 
 
 
@@ -28,6 +29,8 @@ function App() {
           <Route path='/profile' element={<PrivateRoute />} >
             <Route path='/profile' element={<Profile />} />
           </Route>
+          <Route path='/contact/:landlordId/' element={<Contact />} />
+
         </Routes>
       </Router>
       <ToastContainer />

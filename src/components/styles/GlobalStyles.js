@@ -38,5 +38,23 @@ p{
     color: #3c3c3c;
 }
 
+@media(max-width:900px) {
+    .google-auth{
+        width: 100%;
+    }
+}
 
+@media(max-width:700px) {
+    .container{
+        padding-left: 3rem;
+        padding-right:3rem;
+    }
+}
+
+@media(max-width:600px) {
+    .container{
+        padding-left: 1.5rem;
+        padding-right:1.5rem;
+    }
+}
 `

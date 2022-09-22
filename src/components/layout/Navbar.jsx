@@ -20,6 +20,10 @@ const Navbar = () => {
                     <p>Listings</p>
                 </NavLink>
 
+                <NavLink to='/createListing'>
+                    <p>Create-Listing</p>
+                </NavLink>
+
                 <NavLink to='/profile'>
                     <p>Profile</p>
                 </NavLink>

@@ -34,15 +34,17 @@ export const StyledNavbar = styled.nav`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 3.5rem;
+        gap: 2.5rem;
         font-size: 1.1rem;
+    }
+    .nav-links .active{
+        color: #3a5cee;
     }
 
     .nav-links a:hover{
         color: #3a5cee;
         transition: all .1s ease-in;
     }
-
     .register-signIn{
         display: flex;
         align-items: center;
@@ -57,6 +59,7 @@ export const StyledNavbar = styled.nav`
     .register{
         background-color: #3a5cee !important;
         color: white;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
     .register:hover{
         background-color: #263c9b !important;

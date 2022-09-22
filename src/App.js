@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import CreateListing from './pages/CreateListing';
 import Listing from './pages/Listing';
 import Contact from './pages/Contact';
+import Listings from './pages/Listings';
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/' element={<Hommepage />}/>
           <Route path='/signUp' element={<SignUp />} />
           <Route path='/signIn' element={<SignIn />} />
+          <Route path='/listings' element={<Listings />} />
           <Route path='/createListing' element={<CreateListing />} />
           <Route path='/category/:categoryName/:listingId' element={<Listing />} />
           <Route path='/profile' element={<PrivateRoute />} >

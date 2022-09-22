@@ -17,8 +17,8 @@ p{
 .container{
     max-width: 1600px;
     margin: 0 auto;
-    padding-left: 5rem;
-    padding-right:5rem;
+    padding-left: 4rem;
+    padding-right:4rem;
 }
 
 .google-auth{

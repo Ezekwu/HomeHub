@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const StyledContact = styled.div`
-color: #3c3c3c;
+color: #061f48;
 text-align: center;
 padding-top: 2rem;
 padding-bottom: 2rem;

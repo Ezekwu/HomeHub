@@ -12,6 +12,7 @@ import CreateListing from './pages/CreateListing';
 import Listing from './pages/Listing';
 import Contact from './pages/Contact';
 import Listings from './pages/Listings';
+import ScrollToTop from './components/ScrollToTop';
 
 
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <GlobalStyles />
         <Navbar />
         <Routes>

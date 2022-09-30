@@ -1,13 +1,13 @@
 import styled from "styled-components";
 export const StyledListingItem = styled.div`
-color: #3c3c3c;
+color: #061f48;
 max-width: 100%;
 height: auto;
 margin-bottom: 0rem;
 border-radius: 6px;
 border: 1px solid #8080801f;
 
-a{
+.main-link{
     text-decoration: none;
     padding: .4rem 1rem;
     font-size: .9rem;
@@ -18,7 +18,7 @@ a{
     
 }
 
-a:hover{
+.main-link:hover{
     background-color: #263c9b !important;
     transition: all .1s ease-in;
 }
@@ -82,7 +82,7 @@ img{
         color: #3c3c3c9e;
 
         i{
-            color:  #3a5cee;
+            color: #061f48;
         }
     }
 }

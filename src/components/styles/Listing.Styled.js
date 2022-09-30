@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const StyledListing = styled.div`
-color: #3c3c3c;
+color: #061f48;
 padding-top: 2rem;
 padding-bottom: 2rem;
     .main{

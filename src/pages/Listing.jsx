@@ -46,9 +46,7 @@ const Listing = () => {
         }
         fetchListing()
 
-        const fetchLandlord = async () => {
-            
-        }
+        
     }, [params.listingId])
 
     if(loading){
@@ -87,7 +85,7 @@ const Listing = () => {
 
                         {
                             listing.offer && <span className="tag">
-                                -{discount()}%
+                                -{discount().toFixed(0)}%
                             </span>
                         }
 
@@ -103,10 +101,13 @@ const Listing = () => {
                                 ${listing.regularPrice.toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{listing.type === 'rent' && '/month'}
                             </div>
-                            <div className="discount-price">
-                                ${listing.discountedPrice.toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            </div>
+                            {
+                                listing.offer && 
+                                <div className="discount-price">
+                                    ${listing.discountedPrice?.toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                </div>
+                            }
                     </div>
                 </div>
 
@@ -141,7 +142,7 @@ const Listing = () => {
                     }
                     
                     <div className="swiper_nav-prev" ref={swiperPrevRef}>
-                    <img src={prev} alt="" />
+                        <img src={prev} alt="" />
                     </div>
 
                     <div className="swiper_nav-next" ref={swiperNextRef}>

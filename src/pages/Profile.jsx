@@ -175,7 +175,7 @@ const Profile = () => {
                     <div className="profile-pic-container">
                         <img src={profile.photoURL ? profile.photoURL : profileImg} alt="" />
                         <p className='profile-name'> {profile?.name}</p>
-                        <p className='joined'>Joined {new Date(profile?.timestamp.seconds * 1000 ).getFullYear()}</p>
+                        <p className='joined'>Joined {new Date(profile?.timestamp?.seconds * 1000 ).getFullYear()}</p>
                         <label htmlFor="photoUrl">Update profile picture</label>
                         <input type="file" id='photoUrl' max='1' accept='.jpg,.png,.jpeg' onChange={onChange} />
                     </div>

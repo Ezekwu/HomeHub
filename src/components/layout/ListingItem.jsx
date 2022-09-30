@@ -1,28 +1,17 @@
-import { useState, useRef } from "react"
 import { Link } from 'react-router-dom'
 import { StyledListingItem } from "../styles/ListingItemStyled"
-import next from    '../../assets/next(1).png'  
-import prev from '../../assets/previous.png'
 
-import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'
-import { Navigation, EffectFade, Pagination } from 'swiper'
-import 'swiper/css/effect-fade'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 
 const ListingItem = ({listingData, listingId}) => {
-    const swiperPrevRef = useRef(null)
-    const swiperNextRef = useRef(null)
-
 
     return (
         <StyledListingItem>
-                    
-                        <div className="img-container">
-                            <img src={listingData.imgUrls[0]} alt="" />
-                        </div>
+                        <Link to={`/category/${listingData.type}/${listingId}`} >
+                            <div className="img-container">
+                                <img src={listingData.imgUrls[0]} alt="" />
+                            </div>
+                        </Link>
+                        
                     
                 <div className="details">
                     <h3 className="name">{listingData.name}</h3>
@@ -34,9 +23,9 @@ const ListingItem = ({listingData, listingId}) => {
                     <div className="price-view">
                         <h3 className="price">${listingData.regularPrice.toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                            {listingData.type === 'rent' && <p>/month</p>}
+                        {listingData.type === 'rent' && <p>/month</p>}
                         </h3>
-                        <Link to>
+                        <Link to={`/category/${listingData.type}/${listingId}`} className='main-link'>
                             view
                         </Link>
                     </div>

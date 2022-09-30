@@ -36,6 +36,11 @@ const Listings = () => {
         fetchListings()
     }, [])
 
+    // const filterListings = (type) => {
+    //     const filteredList = listings.filter(()=> listings.type.toLowerCase().includes(type.toLowerCase()))
+    //     setListings(filteredList)
+    // }
+
     if(loading) {
         return <h2>hello...</h2>
     }
@@ -43,11 +48,9 @@ const Listings = () => {
     
     return (
         listings && <StyledListings  className='container'> 
+            
             {listings?.map((item)=>(
-                
-                    <ListingItem key={item.id} listingData={item.data} listingId={item.id}/>
-                
-                
+                <ListingItem key={item.id} listingData={item.data} listingId={item.id}/>
             ))}
         </StyledListings>
     )

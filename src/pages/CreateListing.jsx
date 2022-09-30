@@ -384,7 +384,7 @@ const CreateListing = () => {
                                 className='address'
                                 type='text'
                                 rows='12'
-                                maxLength='35'
+                                maxLength='50'
                                 id='address'
                                 value={address}
                                 onChange={onMutate}

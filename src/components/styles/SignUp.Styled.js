@@ -3,7 +3,7 @@ export const StyledSignUp = styled.div`
     display: flex;
     
     padding: 2rem 4rem ;
-    color: #3c3c3c;
+    color: #061f48;
 
     p{
         color: grey;

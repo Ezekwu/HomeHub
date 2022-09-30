@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledProfile = styled.div`
         padding-top: 2rem ;
         padding-bottom: 2rem;
-        color: #3c3c3c;
+        color: #061f48;
 
         h2{
             font-weight: 400;

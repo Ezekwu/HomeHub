@@ -15,7 +15,7 @@ p{
     line-height: 1.45rem;
 }
 .container{
-    max-width: 1600px;
+    max-width: 1550px;
     margin: 0 auto;
     padding-left: 4rem;
     padding-right:4rem;

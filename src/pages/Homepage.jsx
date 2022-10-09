@@ -60,8 +60,7 @@ const Homepage = () => {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: '20%',
-            height:'80vh',
-            borderRadius: '20px'
+            
             }}>
                 <div>
                     <h1>Let's find a home that's perfect for <span>you.</span></h1>
@@ -97,7 +96,7 @@ const Homepage = () => {
 
                     <div className="row">
                         <div className="icon-div">
-                            <img src={dollar} alt="" />
+                            <img src={dollar} alt="" className="Affordable"/>
                         </div>
                         <div className="details">
                             <h3>Affordable Prices</h3>
@@ -197,7 +196,7 @@ const Homepage = () => {
 
             
         </StyledHomePage> 
-        <HomePageFooter/>
+        <HomePageFooter home/>
         </div>
     )
 }

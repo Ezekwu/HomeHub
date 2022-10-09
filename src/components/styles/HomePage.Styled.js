@@ -4,7 +4,7 @@ export const StyledHomePage = styled.div`
     padding-top: 2rem;
     padding-bottom: 2rem;
     color: #061f48;
-    
+    overflow: hidden;
 
     main{
         display: flex;
@@ -12,6 +12,8 @@ export const StyledHomePage = styled.div`
         justify-content: center;
         text-align: center;
         color: white;
+        height: 80vh;
+        border-radius: 20px;
         
         h1{
             width:80% ;
@@ -268,8 +270,10 @@ export const StyledHomePage = styled.div`
         grid-template-columns: repeat(3, 1fr);
         width: 100%;
         margin-bottom: 3rem;
+        
 
         &>div{
+            
             img{
                 height: 250px;
             }
@@ -351,6 +355,350 @@ export const StyledHomePage = styled.div`
         width: 100%;
         img{
             border-radius: 5px;
+        }
+    }
+}
+
+//media queries
+
+@media(max-width:1200px) {
+    main{
+        height: 50vh;
+        h1{
+            font-size: 2.3rem;
+        }
+        p{
+            font-size: 1.2rem;
+        }
+    }
+    
+    .companies{
+        .imgs-container{
+            width: 80%;
+        }
+    }
+
+    .what-we-do{
+        gap: 2rem;
+
+        .col-left{
+
+            .row{
+                gap: 1.5rem;
+
+                
+
+
+            }
+        }
+    }
+
+    .popular-listings{
+        .listings-container{
+            gap: .8rem;
+        }
+    }
+
+    .make-listing {
+        gap: 2rem;
+        
+
+        .listing-steps{
+            margin-top: 1rem !important;
+            margin-bottom: 2rem !important;
+        }
+    }
+    
+    .register{
+        gap: 2rem;
+        .col-1{
+            p{
+                margin-bottom: 1rem;
+            }
+
+            .features{
+                margin-bottom: 2rem;
+                grid-template-columns: 1rem;
+                
+            }
+        }
+    }
+    
+}
+
+@media(max-width:900px) {
+    main{
+        height: 40vh;
+        h1{
+            font-size: 2rem;
+        }
+        p{
+            font-size: 1rem;
+        }
+        a{
+            padding: .7rem 1.2rem;
+        }
+    }
+
+    .companies{
+        .imgs-container{
+            width: 100%;
+            .google{
+                width: 80px;
+            }
+
+            .amazon{
+                width: 60px;
+
+            }
+
+            .booking{
+                width: 100px;
+            }
+
+            .airbnb{
+                width: 40px;
+            }
+
+            .microsoft{
+                width: 90px;
+            }
+        }
+    }
+
+    .what-we-do{
+        gap: 2rem;
+        flex-direction: column;
+        
+        h2{
+            text-align: center;
+        }
+        .col-left{
+
+            .row{
+                gap: 1.5rem;
+
+                .insurance{
+                    width: 27px; 
+                }
+            }
+        }
+    }
+
+    .popular-listings{
+        .listings-container{
+            grid-template-columns: 1fr;
+        }
+    }
+    .make-listing {
+        gap: 4rem;
+        flex-direction: column-reverse;
+
+        .listing-steps{
+            margin-top: 2rem !important;
+            margin-bottom: 2rem !important;
+        }
+    }
+
+    .register{
+        flex-direction: column;
+        gap: 4rem;
+    }
+}
+
+@media(max-width:650px) {
+    main{
+        height: 30vh;
+        border-radius: 5px;
+        h1{
+            font-size: 1.7rem;
+            margin-bottom: .7rem;
+        }
+        p{
+            font-size: .9rem;
+            margin-bottom: 1.2rem;
+        }
+        a{
+            font-size: .8rem ;
+            padding: .6rem 1rem ;
+        }
+    }
+    .companies{
+        h4{
+            font-size: 1.1rem;
+        }
+        .imgs-container{
+            width: 100%;
+            .google{
+                width: 70px;
+            }
+
+            .amazon{
+                width: 50px;
+
+            }
+
+            .booking{
+                width: 90px;
+            }
+
+            .airbnb{
+                width: 30px;
+            }
+
+            .microsoft{
+                width: 70px;
+            }
+        }
+    }
+
+    .what-we-do{
+        
+        
+        
+        .col-left{
+            h2{
+                font-size: 1.4rem;
+            }
+            .row{
+                gap: 1.5rem;
+
+                .insurance{
+                    width: 27px; 
+                }
+            }
+        }
+    }
+    .popular-listings{
+        h2{
+            font-size: 1.4rem;
+        }
+
+        p{
+            font-size: .9rem;
+        }
+        .listings-container{
+            grid-template-columns: 1fr;
+        }
+        
+    }
+    .make-listing {
+
+        h2{
+            font-size: 1.4rem;
+        }
+
+        p{
+            font-size: .9rem;
+        }
+
+    }
+    .register{
+        h2{
+            font-size: 1.4rem;
+        }
+
+        p{
+            font-size: .9rem;
+        }
+    }
+    
+}
+@media(max-width:500px){
+    main{
+        
+        h1{
+            font-size: 1.4rem;
+            margin-bottom: .5rem;
+            width: 100%;
+        }
+        p{
+            font-size: .9rem;
+            margin-bottom: 1.2rem;
+            line-height: 1rem;
+        }
+        a{
+            font-size: .8rem ;
+            padding: .6rem 1rem ;
+        }
+    }
+    .companies{
+        h4{
+            font-size: 1rem;
+        }
+        .imgs-container{
+            .google{
+                width: 50px;
+            }
+
+            .amazon{
+                width: 40px;
+
+            }
+
+            .booking{
+                width: 70px;
+            }
+
+            .airbnb{
+                width: 20px;
+            }
+
+            .microsoft{
+                width: 50px;
+            }
+        }
+    }
+
+    .what-we-do{
+        
+        
+        
+        .col-left{
+            h2{
+                font-size: 1.4rem;
+                margin-bottom: 2.5rem;
+            }
+            .row{
+                gap: 1rem;
+                
+                h3{
+                    font-size: 1.1rem;
+                    margin-bottom: .4rem;
+                }
+                p{
+                    font-size: .9rem;
+                }
+
+                .icon-div{
+                    padding: .8rem;
+                }
+                .payment{
+                    width: 37px;
+                }
+                .insurance{
+                    width: 45px; 
+                }
+                .Affordable{
+                    width: 35px;
+                }
+            }
+        }
+    }
+
+    .make-listing{
+        .listing-steps{
+            flex-direction: column;
+        }
+    }
+    .register{
+        a{
+            font-size: .8rem ;
+            padding: .6rem 1rem ;
+        }
+
+        .features{
+            gap: 1rem;
         }
     }
 }

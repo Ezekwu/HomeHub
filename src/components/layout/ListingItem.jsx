@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { StyledListingItem } from "../styles/ListingItemStyled"
 
 
-const ListingItem = ({listingData, listingId}) => {
+const ListingItem = ({listingData, listingId, onDelete, onEdit }) => {
 
     return (
         <StyledListingItem>
@@ -28,6 +28,15 @@ const ListingItem = ({listingData, listingId}) => {
                         <Link to={`/category/${listingData.type}/${listingId}`} className='main-link'>
                             view
                         </Link>
+                    </div>
+                    <div className="delete-edit">
+                        {
+                            onDelete && <button onClick={onDelete} className='delete'>delete</button>
+                        }
+
+                        {
+                            onEdit && <button onClick={onEdit}  className='edit'>Edit</button>
+                        }
                     </div>
                 </div>
         </StyledListingItem>

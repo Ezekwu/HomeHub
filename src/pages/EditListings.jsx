@@ -2,16 +2,20 @@ import { StyledCreateListing } from "../components/styles/CreaterListing.Styled"
 import { useState, useEffect, useRef } from "react"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { serverTimestamp, doc, getDoc, updateDoc } from 'firebase/firestore'
 import   { ReactComponent as Spinner } from '../assets/spinner.svg'
 import {db} from '../firebase.config'
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { toast } from 'react-toastify' 
 import { v4 as uuidv4 } from 'uuid';
 import HomePageFooter from "../components/layout/HomePageFooter";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-const CreateListing = () => {
+const EditListings = () => {
     const [loading, setLoading] = useState(false)
+    const [spinner, setSpinner] = useState(false)
+    const [listing, setlisting] = useState(false)
     const [formData, setFormData] = useState({
         type: 'rent',
         name: '',
@@ -50,8 +54,34 @@ const CreateListing = () => {
 
     const auth = getAuth()
     const navigate = useNavigate()
+    const params = useParams()
     const isMounted = useRef(true)
     
+
+    useEffect(() => {
+        if(listing && listing.userRef !== auth.currentUser.uid) {
+            toast.error('you cannot edit this listing')
+            navigate('/')
+        }
+    })
+
+    useEffect(() => {
+        setLoading(true)
+        const getListing = async () => {
+            const docRef = doc(db, 'listings', params.lidtingId)
+            const docSnap = await getDoc(docRef)
+            if(docSnap.exists()) {
+                setlisting(docSnap.data())
+                setFormData({...docSnap.data()})
+                setLoading(false)
+            } else{
+                navigate('/')
+                toast.error('listing is false')
+            }
+        }
+
+        getListing()
+    }, [params.lidtingId, navigate])
     useEffect(()=>{
         if(isMounted){
             onAuthStateChanged(auth, (user)=>{
@@ -98,15 +128,15 @@ const CreateListing = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         
-        setLoading(true)
+        setSpinner(true)
 
         if(discountedPrice >= regularPrice){
-            setLoading(false)
+            setSpinner(false)
             toast.error('Discounted price has to be less than Regular price')
             return
         }
         if(images.length > 6) {
-            setLoading(false)
+            setSpinner(false)
             toast.error('Max 6 images')
             return
         }
@@ -150,7 +180,7 @@ const CreateListing = () => {
         const imgUrlsReverse = await Promise.all(
             [...images].map(image=> storeImage(image))
         ).catch(()=>{
-            setLoading(false)
+            setSpinner(false)
             toast.error('image not uploaded')
         })
         const imgUrls = imgUrlsReverse.reverse();
@@ -163,153 +193,158 @@ const CreateListing = () => {
         
         delete formDataCopy.images
         !formDataCopy.offer && delete formDataCopy.discountedPrice
-
-        const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
-        setLoading(false)
+        
+        const docRef = doc(db, 'listings', params.lidtingId)
+        await updateDoc(docRef, formDataCopy)
+        setSpinner(false)
         toast.success('Listing saved succesfully')
         navigate(`/category/${formData.type}/${docRef.id}`)
     }
 
     return (
         <>
+
         <StyledCreateListing className='container'>
             <div className="heading">
-                <h1>create a <span>listing.</span></h1>
+                <h1>Edit your <span>listing.</span></h1>
                 
             </div>
             <p className="info">Please fill in the neccessary information for your current listing. <br /> NOTE: listing images uploded should be a maximum of six with the first uploaded image being  first in display.</p>
             <form onSubmit={onSubmit}>
                 <div className="row row-1">
                     <div className="name">
-                        <label htmlFor="name">name</label>
-                        <input type="text" 
+                        {name ? <label htmlFor="name">name</label> : <Skeleton  height={20} width={80}/>}
+                        {name ?<input type="text" 
                         id="name"
                         value={name}
                         required
                         maxLength='40'
                         minLength='10'
-                        onChange={onMutate}/>
+                        onChange={onMutate}/> : <Skeleton height={30}/>}
+                        
                     </div>
                     <div className="boolen-option">
-                        <label htmlFor="" >sale/rent</label>
+                        { name ? <label htmlFor="" >sale/rent</label> :  <Skeleton style={{marginBottom: '15px'}} height={70} width/>}
                         <div className="flex">
-                            <button 
+                            {bedrooms ? <button 
                                 className={type === 'rent' && "button-false"}
                                 onClick={onMutate}
                                 type='button'
                                 id="type"
                                 value='sale'
-                            >sale</button>
-                            <button 
+                            >sale</button> :  <Skeleton height={30}/>}
+                            {bedrooms ? <button 
                                 className={type === 'sale' && "button-false"}
                                 onClick={onMutate}
                                 type='button'
                                 id="type"
                                 value='rent'
-                            >rent</button>
+                            >rent</button> : <Skeleton height={30}/>}
                         </div>
                     </div>
                 </div>
                 <div className="row row-2">
                     <div className="bathrooms">
-                        <label htmlFor="bathrooms">bathrooms <i className="fa-solid fa-bath"></i></label>
-                        <input type="number" 
+                        {bathrooms ? <label htmlFor="bathrooms">bathrooms <i className="fa-solid fa-bath"></i></label> : <Skeleton style={{marginBottom: '15px'}} height={20} width={80}/>}
+                        { bathrooms ? <input type="number" 
                         id="bathrooms"
                         value={bathrooms}
                         min='1'
                         max='50'
                         required
-                        onChange={onMutate}/>
+                        onChange={onMutate}/> :<Skeleton height={30}/> }
                     </div>
 
                     <div className="bedrooms">
-                        <label htmlFor="bathrooms">bedrooms <i class="fa-solid fa-bed"></i></label>
-                        <input type="number" 
+                        {bedrooms ? <label htmlFor="bedrooms">bedrooms <i class="fa-solid fa-bed"></i></label>
+                        : <Skeleton style={{marginBottom: '15px'}} height={20} width={80}/>}
+                        {bedrooms ? <input type="number" 
                         id="bedrooms"
                         value={bedrooms}
                         min='1'
                         max='50'
                         required
-                        onChange={onMutate}/>
+                        onChange={onMutate}/>: <Skeleton height={30}/>}
                     </div>
                 </div>
                 <div className="row row-3">
                     
                     <div className="boolen-option">
-                            <label htmlFor="" >parking <i className="fa-solid fa-square-parking"></i></label>
+                            {parking ? <label htmlFor="" >parking <i className="fa-solid fa-square-parking"></i></label> : <Skeleton  height={70} width/>}
                             <div className="flex">
-                                <button 
+                                {parking ?  <button 
                                     className={ parking ? '' : "button-false"}
                                     onClick={onMutate}
                                     type='button'
                                     id="parking"
                                     value={true}
-                                >yes</button>
-                                <button 
+                                >yes</button> : <Skeleton />}
+                                {parking ? <button 
                                     className={ parking ? "button-false" : ''}
                                     onClick={onMutate}
                                     type='button'
                                     id="parking"
                                     value={false}
-                                >no</button>
+                                >no</button> : <Skeleton />}
                             </div>
-                        </div>
+                    </div>
 
                         <div className="boolen-option">
-                            <label htmlFor="" >furnished <i className="fa-solid fa-couch"></i></label>
+                            {parking ? <label htmlFor="" >furnished <i className="fa-solid fa-couch"></i></label> : <Skeleton  height={70} width/>}
                             <div className="flex">
-                                <button 
+                                {parking ? <button 
                                     className={ furnished ? '' : "button-false"}
                                     onClick={onMutate}
                                     type='button'
                                     id="furnished"
                                     value={true}
-                                >yes</button>
-                                <button 
+                                >yes</button>: <Skeleton />}
+                                {parking ? <button 
                                     className={ furnished ? "button-false" : ''}
                                     onClick={onMutate}
                                     type='button'
                                     id="furnished"
                                     value={false}
-                                >no</button>
+                                >no</button>: <Skeleton />}
                             </div>
                         </div>
                     </div>
 
                     <div className="row row-3">
                         <div className="boolen-option">
-                            <label htmlFor="" >pool <i className="fa-solid fa-water-ladder"></i></label>
+                            {pool ? <label htmlFor="" >pool <i className="fa-solid fa-water-ladder"></i></label> : <Skeleton  height={70} width/>}
                             <div className="flex">
-                                <button 
+                                {pool ? <button 
                                     className={ pool ? '' : "button-false"}
                                     onClick={onMutate}
                                     type='button'
                                     id="pool"
                                     value={true}
-                                >yes</button>
-                                <button 
+                                >yes</button>: <Skeleton />}
+                                {pool ? <button 
                                     className={ pool ? "button-false" : ''}
                                     onClick={onMutate}
                                     type='button'
                                     id="pool"
                                     value={false}
-                                >no</button>
+                                >no</button> : <Skeleton />}
                             </div>
                         </div>
 
                         <div className="kitchen">
-                            <label htmlFor="bathrooms">kitchen <i className="fa-solid fa-kitchen-set"></i></label>
-                            <input type="number" 
+                            {kitchen ? <label htmlFor="bathrooms">kitchen <i className="fa-solid fa-kitchen-set"></i></label>: <Skeleton style={{marginBottom: '15px'}} height={20} width={80}/>}
+                            {kitchen ? <input type="number" 
                             id="kitchen"
                             value={kitchen}
                             min='1'
                             max='5'
                             required
-                            onChange={onMutate}/>
+                            onChange={onMutate}/>: <Skeleton height={30}/>}
                         </div>
                     </div>
 
-                    <div className="row row-4">
+                    {
+                        !loading && <div className="row row-4">
                         <div className="flex location">
                             <div className="longitude">
                                 <label htmlFor="longitude">longitude</label>
@@ -350,8 +385,10 @@ const CreateListing = () => {
                         </div>
                     </div>
                     </div>
+                    }
 
-                    <div className="row row-5">
+                    {
+                        !loading && <div className="row row-5">
                         <div className="regularPrice">
                             <label htmlFor="regularPrice">regular price </label>
                             <div className="flex">
@@ -378,8 +415,9 @@ const CreateListing = () => {
                                 </div>
                         }
                     </div>
+                    }
 
-                    <div className="row row-6">
+                    {!loading && <div className="row row-6">
                         <div className="address">
                             <label className='formLabel'>address <i class="fa-solid fa-house"></i></label>
                             <textarea
@@ -394,21 +432,22 @@ const CreateListing = () => {
                             />
 
                         </div>
-                    </div>
+                    </div>}
 
-                    <div className="row row-6">
+                    {!loading && <div className="row row-6">
                         <div className="images">
                             <label htmlFor="images">Upload images <i class="fa-solid fa-camera-retro"></i></label>
                                 <input type="file" id='images' max='6' multiple required accept='.jpg,.png,.jpeg' onChange={onMutate} />
                         </div>
-                    </div>
-                    <button type="submit" className="create-listing">{loading ? <Spinner width={'25px'} height={'25px'}/> : 'Create Listing'}</button>
+                    </div>}
+                    {
+                        !loading && <button type="submit" className="create-listing">{spinner ? <Spinner width={'25px'} height={'25px'}/> : 'Edit Listing'}</button>
+                    }
             </form>
-            
         </StyledCreateListing>
         <HomePageFooter />
         </>
     )
 }
 
-export default CreateListing
+export default EditListings

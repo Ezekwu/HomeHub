@@ -1,11 +1,13 @@
 import React from 'react'
 import { getAuth } from 'firebase/auth'
-import { doc, getDoc, updateDoc} from "firebase/firestore";
+import { doc, getDoc, updateDoc,  collection, getDocs, query, where, orderBy, limit, startAfter, deleteDoc} from "firebase/firestore";
+import ListingItem from '../components/layout/ListingItem';
+
 import { updateProfile } from 'firebase/auth';
 import { db } from '../firebase.config';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, Link } from "react-router-dom"
-import   { ReactComponent as Spinner } from '../assets/spinner.svg'
+import   Spinner  from '../assets/Dual Ring-1s-200px.svg'
 
 
 
@@ -20,26 +22,27 @@ const Profile = () => {
     const auth = getAuth()
     const storage = getStorage();
     const navigate = useNavigate();
-
-    console.log(auth.currentUser.uid);
+    
     
     const [profile, setProfile] = useState(false)
     const [formData, setFormData] = useState(false)
+    const [profileId, setProfileId] = useState(null)
     const [formEnabled, setFormEnabled] = useState(false)
     const [loading, setLoading] = useState(false)
     const [spinnerLoader, setSpinnerLoader] = useState(false)
-    const [key, setKey] = useState(false)
-
+    const [listings, setListings] = useState(false)
+    
     const {name, email, photoURL, bio, image} = formData 
 
     
     
     
     useEffect(()=>{
+        setLoading(true)
         const getProfile = async () =>{
         const profileSnap = await getDoc(doc(db, 'users',auth.currentUser.uid ))
         let profileCopy = {...profileSnap.data()}
-
+        
         setProfile(profileCopy)
 
         setFormData({
@@ -49,15 +52,30 @@ const Profile = () => {
             bio: profileCopy.bio ? profileCopy.bio : null,
             image: []
         })
-        
-
+        console.log(auth.currentUser.uid);
+        const listingsRef = collection(db, 'listings')
+        const q = query(listingsRef, 
+            where('userRef', '==', auth.currentUser.uid)
+            )
+            const querySnap = await getDocs(q)
+            let listing = []
+            querySnap.forEach((doc)=> {
+                return listing.push({
+                    id: doc.id,
+                    data: doc.data()
+                }) 
+            })
+            
+                setListings(listing)
+            
+            setLoading(false)
         }
         getProfile()
-    }, [])
+
     
-    const reloadComponent = ()  => {
-        setKey(!key)
-    }
+    }, [auth.currentUser.uid])
+    
+    
     const onChange = (e) =>{
         setFormEnabled(true)
         
@@ -81,12 +99,12 @@ const Profile = () => {
         
     }
 
-    console.log(profile);
-        console.log(formData);
+    
     
     const onLogout = () => {
         auth.signOut()
         navigate('/')
+        window.location.reload()
     }
 
     const onSubmit = async (e) => {
@@ -161,7 +179,18 @@ const Profile = () => {
             }
 }
 
-    
+    const deleteListing = async (id) => {
+        if(window.confirm('Are you sure you want to delete?')) {
+            const document = await deleteDoc(doc(db, 'listings', id))
+            const updatedListings = listings.filter((listing)=> listing.id !== id)
+            setListings(updatedListings)
+            toast.success('successully deleted listings')
+        }
+    }
+
+    const onEdit = (id) => {
+        navigate(`/editListings/${id}`)
+    }
 
     
 
@@ -169,7 +198,7 @@ const Profile = () => {
         profile &&
         <StyledProfile className='container'>
             <h2 >My <span>Profile.</span></h2>
-            <div >
+            <div className='main'>
                 
                 <div className="col-left">
                     <div className="profile-pic-container">
@@ -197,7 +226,7 @@ const Profile = () => {
                         </div>
                         <div className="bio">
                             <label htmlFor="name">bio</label>
-                            <textarea value={bio} id="bio" rows='12'onChange={onChange}></textarea>
+                            <textarea value={bio} id="bio" rows='8'onChange={onChange}></textarea>
                         </div>
                         
                         <button className='save-btn'  disabled={!formEnabled} >{spinnerLoader ?<Spinner width={'25px'} height={'25px'}/> : 'Save' } </button>
@@ -206,10 +235,23 @@ const Profile = () => {
                 </div>
                 
             </div>
+            {
+                listings &&
+                <div className="your-listings">
+                    <h3>Your Listings</h3>
+                    <div className="listings-container">
+                        {
+                            listings.map((item)=>(
+                                <ListingItem listingData={item.data} listingId={item.id} key={item.id} onDelete={()=> deleteListing(item.id)}  onEdit={()=> onEdit(item.id)}/>
+                            ))
+                        }
+                    </div>
+                </div>
+            }
             <Link to='/createListing' className='create-listing'>
-                        <p>sell or rent your home</p> <i className="fa-solid fa-arrow-right"></i>
+                        <p>sell or rent your home?</p> <i className="fa-solid fa-arrow-right"></i>
             </Link>
-            <button onClick={onLogout}>log-out</button>
+            <button onClick={onLogout} className='log-out'><p>log-out</p><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </StyledProfile>
     )
 }

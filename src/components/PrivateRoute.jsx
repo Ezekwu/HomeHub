@@ -10,7 +10,7 @@ const PrivateRoute = () => {
     useEffect(()=> {
         if(isMounted){
             const auth = getAuth()
-            onAuthStateChanged(auth, (user)=> {
+            onAuthStateChanged(auth, (user)=> { 
             if(user){
                 setLoggedIn(true)
             }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledCreateListing = styled.div`
 padding-top: 2rem;
-padding-bottom: 2rem;
+padding-bottom: 4rem;
 color: #061f48;
     
     i{

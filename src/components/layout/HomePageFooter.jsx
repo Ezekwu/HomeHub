@@ -1,21 +1,27 @@
 import { StyledHomePageFooter } from "../styles/HomePageFooter"
 import logo from '../../assets/camera-flash-selected-svgrepo-com.svg'
-const HomePageFooter = () => {
+const HomePageFooter = ({home}) => {
     const date = new Date().getFullYear()
+    
     
     return (
         <StyledHomePageFooter>
-            <div className="news-letter container">
-                <h2>Newsletter</h2>
-                <p>Be the first to know about discounts, events, latest listings weekly in your mail-box. <br /> You can unsuscribe anytime you want with just one click</p>
-                <form >
-                    <div className="input-container">
-                        <input type="text" placeholder="Enter your email"/>
-                        <button>Submit</button>
-                    </div>
-                </form>
-            </div>
-            <hr />
+            {
+                home && <>
+                            <div className="news-letter container">
+                                <h2>Newsletter</h2>
+                                <p>Be the first to know about discounts, events, latest listings weekly in your mail-box. <br /> You can unsuscribe anytime you want with just one click</p>
+                                <form >
+                                    <div className="input-container">
+                                        <input type="text" placeholder="Enter your email"/>
+                                        <button>Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr />
+                        </>
+            }
+            
             <div className="footer-main container">
                 <div className="logo-desc">
                     <div className="logo-container">

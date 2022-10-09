@@ -88,4 +88,23 @@ img{
 }
 
 
+.delete-edit{
+    display: flex;
+    justify-content: space-between;
+
+    button{
+        padding: .4rem 1rem;
+        font-size: .9rem;
+        border-radius: 5px;
+        color: white;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        
+    }
+    .delete{
+            background-color: #d91717e8;
+
+        }
+}
+
 `

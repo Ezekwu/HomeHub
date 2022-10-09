@@ -44,7 +44,7 @@ p{
     }
 }
 
-@media(max-width:700px) {
+@media(max-width:1100px) {
     .container{
         padding-left: 3rem;
         padding-right:3rem;

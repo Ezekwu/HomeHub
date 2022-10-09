@@ -4,6 +4,7 @@ import { db } from "../firebase.config"
 import { doc, getDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import { StyledContact } from "../components/styles/Contact.styled"
+import HomePageFooter from "../components/layout/HomePageFooter"
 const Contact = () => {
     const [message, setMessage] = useState('')
     const [ landlord, setLandlord] = useState(null)
@@ -31,23 +32,26 @@ const Contact = () => {
     }
 
     return (
-        <StyledContact className="container">
-            <h2>Contact <span>Landlord</span></h2>
-            {
-                landlord && <main>
-                    <p>Leave a message for {landlord.name}</p>
+        <>
+            <StyledContact className="container">
+                <h2>Contact <span>Landlord</span></h2>
+                {
+                    landlord && <main>
+                        <p>Leave a message for {landlord.name}</p>
 
-                    <form >
-                        <div className="messageDiv">
-                            <textarea name="message" id="message"  value={message} onChange={onChange}></textarea>
-                        </div>
-                        <a href={`mailto:${landlord.email}?subject=${searchParams.get('listingName')}&body=${message}`}>
-                            <button type="button" className="primaryButton">Message</button>
-                        </a>
-                    </form>
-                </main>
-            }
-        </StyledContact>
+                        <form >
+                            <div className="messageDiv">
+                                <textarea name="message" id="message"  value={message} onChange={onChange}></textarea>
+                            </div>
+                            <a href={`mailto:${landlord.email}?subject=${searchParams.get('listingName')}&body=${message}`}>
+                                <button type="button" className="primaryButton">Message</button>
+                            </a>
+                        </form>
+                    </main>
+                }
+            </StyledContact>
+            <HomePageFooter />
+        </>
     )
 }
 

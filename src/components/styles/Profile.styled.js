@@ -14,9 +14,17 @@ export const StyledProfile = styled.div`
         h2 span{
             color: #3a5cee;
         }
+        .spinner-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 20px;
+            }
+        }
 
         
-        & > div{
+        .main{
             display: flex;
             gap: 4rem;
         }
@@ -117,9 +125,8 @@ export const StyledProfile = styled.div`
             gap: 1rem;
             align-items: center;
             justify-content: center;
-            background-color: #eee;
-            padding: .9rem 1.4rem;
-            border-radius:5px;
+            margin-bottom: 1rem;
+            
         }
 
         .create-listing i{
@@ -176,6 +183,38 @@ export const StyledProfile = styled.div`
         .save-btn{
             margin-right: auto;
         }
+        .your-listings{
+            margin: 4rem 0;
+            & > h3{
+                font-weight: 400;
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+
+        }
+        .listings-container{
+            display: flex;
+            gap: 1rem;
+            overflow-x: scroll;
+            overscroll-behavior-inline: contain;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: 1rem;
+
+            & >div{
+                min-width: 320px;
+                scroll-snap-align: start;
+                
+                
+            }
+        }
+
+        .log-out{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .7rem;
+        }
 
         @media(max-width: 1100px) {
             & > div{
@@ -202,6 +241,92 @@ export const StyledProfile = styled.div`
             .profile-pic-container img{
                 width: 150px;
                 height: 150px;
+            }
+
+            .listings-container{
+            display: flex;
+            gap: 1rem;
+            overflow-x: scroll;
+
+            & >div{
+                min-width: 320px;
+                
+                img{
+                    border: 1px solid red;
+                    height: 170px;
+                }
+
+                .details{
+                    padding:.5rem 1rem 1rem;
+
+                    .name {
+                        font-size: .95rem;
+                        margin-bottom: .3rem;
+                    }
+
+                    .address{
+                        font-size: .8rem;
+                        margin-bottom: .5rem;
+                    }
+
+                    .rooms{
+                        margin-bottom: 0.9rem;
+                        span{
+                            font-size: .8rem;
+                        }
+                    }
+
+                    .price-view  {
+                        margin-bottom: 1rem;
+                        h3{
+                            font-size: 1rem;
+
+                        }
+
+                        .main-link{
+                            font-size: .75rem;
+                            padding: .4rem .8rem;
+                        }
+                    }
+
+                    .edit{
+                        font-size: .75rem;
+                        margin-top: 0rem;
+                        padding: .4rem .8rem;
+                    }
+
+                    .delete{
+                        font-size: .75rem;
+                        margin-top: 0rem;
+                        padding: .4rem .8rem;
+                    }
+                }
+            }
+        }
+        }
+
+        @media(max-width:450px) {
+            .listings-container{
+                &>div{
+                    min-width: 300px;
+                }
+            }
+        }
+
+        @media(max-width:380px) {
+            .listings-container{
+                
+                &>div{
+                    min-width: 290px;
+                }
+            }
+        }
+
+        @media(max-width:350px) {
+            .listings-container{
+                &>div{
+                    min-width: 265px;
+                }
             }
         }
 `

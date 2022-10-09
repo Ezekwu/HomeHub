@@ -15,7 +15,8 @@ import 'swiper/css'
 import { Navigation, EffectFade, Pagination } from 'swiper'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
-import 'swiper/css/pagination';
+import 'swiper/css/pagination'; 
+import HomePageFooter from "../components/layout/HomePageFooter"
 
 const Listing = () => {
     const [listing, setListing] = useState(null)
@@ -67,7 +68,7 @@ const Listing = () => {
     
     return (
         listing && 
-        
+        <>
         <StyledListing className="container">
             <div className="flex main">
                 <div className="listing-details">
@@ -233,12 +234,9 @@ const Listing = () => {
             {auth.currentUser?.uid == listing.userRef && <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`} className='contact-btn'>
                         Contact Landlord
             </Link>}
-
-
-        
-        
-        
-    </StyledListing>
+        </StyledListing>
+        <HomePageFooter />
+        </>
     )
 }
 

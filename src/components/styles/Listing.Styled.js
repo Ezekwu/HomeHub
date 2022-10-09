@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const StyledListing = styled.div`
 color: #061f48;
 padding-top: 2rem;
-padding-bottom: 2rem;
+padding-bottom: 4rem;
     .main{
         justify-content: space-between;
         margin-bottom: 6rem;

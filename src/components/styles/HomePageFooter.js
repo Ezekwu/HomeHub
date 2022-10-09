@@ -131,4 +131,40 @@ hr{
         margin-bottom: 1rem;
     }
 }
+
+@media(max-width:900px) {
+    .footer-main{
+        flex-direction: column;
+        gap: 3rem;
+
+        .logo-desc{
+            width: 100%;
+            
+
+            .logo-container{
+                
+            }
+        }
+    }
+}
+
+@media(max-width:500px){
+    .input-container{
+        width: 280px ;
+        display: flex;
+        input{
+            padding: .5rem 1rem !important;
+        }
+        button{
+            font-size: .7rem ;
+            padding: .3rem .5rem ;
+        }
+    }
+
+
+    .links{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
 `

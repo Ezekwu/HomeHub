@@ -12,6 +12,7 @@ import CreateListing from './pages/CreateListing';
 import Listing from './pages/Listing';
 import Contact from './pages/Contact';
 import Listings from './pages/Listings';
+import EditListings from './pages/EditListings';
 import ScrollToTop from './components/ScrollToTop';
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path='/signUp' element={<SignUp />} />
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/listings' element={<Listings />} />
+          <Route path='/editListings/:lidtingId' element={<EditListings />} />
           <Route path='/createListing' element={<CreateListing />} />
           <Route path='/category/:categoryName/:listingId' element={<Listing />} />
           <Route path='/profile' element={<PrivateRoute />} >

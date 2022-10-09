@@ -237,7 +237,7 @@ const Profile = () => {
             </div>
             {
                 listings &&
-                <div className="your-listings">
+                <div className="your-listings">   
                     <h3>Your Listings</h3>
                     <div className="listings-container">
                         {

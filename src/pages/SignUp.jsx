@@ -19,7 +19,6 @@ const SignUp = () => {
     const {name, email, password}= formData
 
 
-    const [passwordVisisbility, setPasswordVisibility] = useState(false)
     const navigate = useNavigate()
 
     const onChange = (e) => {

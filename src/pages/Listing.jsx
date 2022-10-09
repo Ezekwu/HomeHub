@@ -231,7 +231,7 @@ const Listing = () => {
                 </div>
             </div>
 
-            {auth.currentUser?.uid == listing.userRef && <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`} className='contact-btn'>
+            {auth.currentUser?.uid !== listing.userRef && <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`} className='contact-btn'>
                         Contact Landlord
             </Link>}
         </StyledListing>

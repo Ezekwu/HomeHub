@@ -13,8 +13,12 @@ export const StyledNavbar = styled.nav`
         width: 32px;
         margin-right: .85rem;
     }
-
+    
     a{
+        text-decoration: none;
+        color: #3e3e3e;
+    }
+    .nav-links a{
         text-decoration: none;
         color: grey;
         font-size: 1.05rem;

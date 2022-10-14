@@ -8,6 +8,7 @@ import { db } from '../firebase.config';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, Link } from "react-router-dom"
 import   Spinner  from '../assets/Dual Ring-1s-200px.svg'
+import Loader from '../components/layout/Loader';
 
 
 
@@ -16,7 +17,7 @@ import { useEffect, useState } from "react"
 import { toast } from 'react-toastify'
 
 import { StyledProfile } from '../components/styles/Profile.styled'
-import profileImg from '../assets/profile picture.jpg'
+import profileImg from '../assets/Avatar.png'
 import { async } from '@firebase/util';
 const Profile = () => {
     const auth = getAuth()
@@ -192,7 +193,9 @@ const Profile = () => {
         navigate(`/editListings/${id}`)
     }
 
-    
+    if(loading){
+        return <Loader />
+    }
 
     return (
         profile &&

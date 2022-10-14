@@ -16,7 +16,7 @@ import insurance from '../assets/life-insurance.png'
 import createListing from '../assets/create-listing.jpg'
 import signUpImg from '../assets/features.jpg'
 import ListingItem from "../components/layout/ListingItem"
-
+import CardSkeleton from "../components/layout/CardSkeleton"
 import { toast } from "react-toastify"
 
 
@@ -25,9 +25,11 @@ import { db } from "../firebase.config"
 
 const Homepage = () => {
     const [listings, setListings] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
         const fetchListings = async () => {
+            setLoading(true)
             try {
                 const listingsRef = collection(db, 'listings')
 
@@ -43,9 +45,11 @@ const Homepage = () => {
                     })
                 })
                 setListings(listings)
+                setLoading(false)
                 
 
             }  catch (error){
+                setLoading(false)
                 toast.error('could not fetch listings')
             }
         }
@@ -120,19 +124,19 @@ const Homepage = () => {
                 </div>
             </section>
 
-            {
-                listings && 
+            
+                
                 <section className="popular-listings">
                     <h2>Popular Listings</h2>
                     <p>Here are the most popular listings up for sale and rent . all our properties are in good conditions and have standard amenities and are in a <br /> good and secure location</p>
                     <div className="listings-container">
-                        {listings?.map((item)=>(
+                        { loading ? <CardSkeleton cards={3}/> : listings?.map((item)=>(
                             <ListingItem key={item.id} listingData={item.data} listingId={item.id} className='listing'/>
                         ))}
                     </div>
                     <Link to='/listings'>View more</Link>
                 </section>
-            }
+            
 
             <section className="make-listing">
                 <div className="col-left">

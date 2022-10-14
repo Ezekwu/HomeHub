@@ -1,12 +1,12 @@
 import logo from '../../assets/camera-flash-selected-svgrepo-com.svg'
 import hamburger from '../../assets/hamburger.png'
 
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { StyledNavbar } from '../styles/Navbar.Styled'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc} from "firebase/firestore";
 import { db } from '../../firebase.config';
-import profileImg from '../../assets/profile-img-2.jpg'
+import profileImg from '../../assets/Avatar.png'
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -53,10 +53,13 @@ const Navbar = () => {
             <div className="hamburger-div" onClick={toggleMenu}>
                 <img src={hamburger} alt=""  />
             </div>
-            <div className="logo-container">
-                <img src={logo} alt="" />
-                <h2>Home<span>Hub</span></h2>
-            </div>
+            <Link to='/'>
+                <div className="logo-container">
+                    <img src={logo} alt="" />
+                    <h2>Home<span>Hub</span></h2>
+                </div>
+            </Link>
+            
 
             <div className="nav-links">
                 <div className={showMenu ? 'main-links show-menu' : 'main-links'}>

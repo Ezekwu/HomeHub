@@ -121,6 +121,10 @@ padding-bottom: 4rem;
 .landlord{
     width: 40%;
     margin-bottom: 3rem;
+    margin-top: 5rem;
+    border: 1px solid #d0d0d09e;
+    border-radius: 8px;
+    padding: 1rem;
 }
 
 .landlord .row-1{
@@ -140,7 +144,12 @@ padding-bottom: 4rem;
     border-radius: 50%;
     object-fit: cover;
 }
-
+.joined{
+    margin-top: .3rem;
+}
+.lanlord-bio{
+    font-weight: 300;
+}
 .contact-btn{
     background-color: #3a5cee;
     color: white;

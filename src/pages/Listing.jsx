@@ -17,6 +17,7 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'; 
 import HomePageFooter from "../components/layout/HomePageFooter"
+import Loader from "../components/layout/Loader"
 
 const Listing = () => {
     const [listing, setListing] = useState(null)
@@ -50,9 +51,7 @@ const Listing = () => {
         
     }, [params.listingId])
 
-    if(loading){
-        return <h2>loading...</h2>
-    }
+    
 
     const discount = () => {
         if(listing) {
@@ -60,11 +59,15 @@ const Listing = () => {
             const slashedPrice = listing.regularPrice
             const difference = slashedPrice - price
 
-            return (difference /slashedPrice) * 100
+            return (difference /slashedPrice) * 100 
         }
     }
     discount()
     
+
+    if(loading){
+        return <Loader/>
+    }
     
     return (
         listing && 

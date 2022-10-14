@@ -5,22 +5,27 @@ import { doc, getDoc } from "firebase/firestore"
 import { toast } from "react-toastify"
 import { StyledContact } from "../components/styles/Contact.styled"
 import HomePageFooter from "../components/layout/HomePageFooter"
+import Loader from "../components/layout/Loader"
 const Contact = () => {
     const [message, setMessage] = useState('')
     const [ landlord, setLandlord] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
 
     
     const params = useParams()
     useEffect(() => {
+        setLoading(true)
         const getLandlord = async () => {
             const docRef = doc(db, 'users', params.landlordId)
             const docSnap = await getDoc(docRef)
 
             if(docSnap.exists()){
                 setLandlord(docSnap.data())
+                setLoading(false)
             } else {
+                setLoading(false)
                 toast.error('Could not get landlord data')
             }
         }
@@ -30,7 +35,9 @@ const Contact = () => {
     const onChange = (e) => {
         setMessage(e.target.value)
     }
-
+    if(loading) {
+        return <Loader />
+    }
     return (
         <>
             <StyledContact className="container">

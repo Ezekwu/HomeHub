@@ -428,7 +428,7 @@ export const StyledHomePage = styled.div`
 
 @media(max-width:900px) {
     main{
-        height: 40vh;
+        height: 50vh;
         h1{
             font-size: 2rem;
         }
@@ -508,7 +508,7 @@ export const StyledHomePage = styled.div`
 
 @media(max-width:650px) {
     main{
-        height: 30vh;
+        height: 50vh;
         border-radius: 5px;
         h1{
             font-size: 1.7rem;

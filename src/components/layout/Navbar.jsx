@@ -53,7 +53,7 @@ const Navbar = () => {
             <div className="hamburger-div" onClick={toggleMenu}>
                 <img src={hamburger} alt=""  />
             </div>
-            <Link to='/'>
+            <Link to='/' className='logo-link'>
                 <div className="logo-container">
                     <img src={logo} alt="" />
                     <h2>Home<span>Hub</span></h2>

@@ -120,9 +120,11 @@ export const StyledNavbar = styled.nav`
 
     @media(max-width:900px){
         justify-content: space-between;
-
-        .logo-container{
+        .logo-link{
             margin: 0 auto;
+        }
+        .logo-container{
+        
             h2{
                 font-size: 1.2rem;
             }
@@ -169,7 +171,7 @@ export const StyledNavbar = styled.nav`
 
         .register{
             font-size: .8rem !important;
-            padding: .6rem 1rem !important;
+            padding: .5rem .9rem !important;
         }
 
         .hamburger-div{
@@ -178,6 +180,14 @@ export const StyledNavbar = styled.nav`
         }
     }
     @media(max-width:550px) {
+        .register{
+            padding: .4rem .85rem !important ;
+        }
+        .register-signIn > a{
+            p{
+                font-size: .8rem !important;
+            }
+        }
         .profile-img img{
             width: 40px;
             height: 40px;
@@ -191,7 +201,7 @@ export const StyledNavbar = styled.nav`
         }
 
         .register{
-            padding: .4rem 1rem !important;
+            padding: .38rem .8rem !important;
         }
 
         .register-signIn > a{

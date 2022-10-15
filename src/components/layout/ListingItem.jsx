@@ -21,7 +21,8 @@ const ListingItem = ({listingData, listingId, onDelete, onEdit }) => {
                         <span><i className="fa-solid fa-bath"></i> {listingData.bathrooms} bathrooms</span>
                     </div>
                     <div className="price-view">
-                        <h3 className="price">${listingData.regularPrice.toString()
+                        <h3 className="price">${listingData.offer ? listingData.discountedPrice.toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',') : listingData.regularPrice.toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                         {listingData.type === 'rent' && <p>/month</p>}
                         </h3>

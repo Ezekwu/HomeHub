@@ -137,7 +137,10 @@ padding-bottom: 4rem;
     font-weight: 400;
     font-size: 1.25rem;
 }
-
+.landlord-description p{
+    color: grey;
+    font-weight: 300;
+}
 .landlord .landlord-img img{
     width: 80px;
     height: 80px;
@@ -189,21 +192,43 @@ padding-bottom: 4rem;
 
 @media(max-width:600px){
     .main{
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
     }
     .name{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        
     }
-    
+    .location{
+        font-size: .9rem;
+    }
+
+    .tag{
+        padding: .5rem;
+        font-size: .7rem;
+    }
+    .rooms{
+        font-size: .9rem;
+    }
     .regular-price{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     .discount-price{
-        font-size: 1rem;
+        font-size: .9rem;
     }
 
     .house-assets h2{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+    .house-assets .row{
+        font-size: .9rem;
+    }
+
+    .map-container h2{
+        font-size: 1.2rem;
+    }
+
+    .map-container p{
+        font-size: .9rem;
     }
 
     .assets-container{
@@ -215,6 +240,17 @@ padding-bottom: 4rem;
     }
     .landlord{
         width: 70%;
+    }
+    .landlord h2{
+        font-size: 1.2rem;
+    }
+
+    .landlord p{
+        font-size: .9rem;
+    }
+    .landlord .landlord-img img{
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -228,7 +264,7 @@ padding-bottom: 4rem;
     }
 
     .landlord .landlord-description h2{
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
     /////////////////////////////////////

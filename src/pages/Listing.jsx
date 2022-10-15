@@ -102,13 +102,14 @@ const Listing = () => {
 
                     <div className="price flex">
                             <div className="regular-price">
-                                ${listing.regularPrice.toString()
+                                ${ listing.offer ? listing.discountedPrice?.toString() 
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',') : listing.regularPrice.toString() 
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{listing.type === 'rent' && '/month'}
                             </div>
                             {
                                 listing.offer && 
                                 <div className="discount-price">
-                                    ${listing.discountedPrice?.toString()
+                                    ${listing.regularPrice.toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                 </div>
                             }

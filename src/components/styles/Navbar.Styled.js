@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const StyledNavbar = styled.nav`
+    position: sticky;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color:white;
     padding-top: .8rem ;
     padding-bottom: .8rem;
     display: flex;

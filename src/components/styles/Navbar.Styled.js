@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledNavbar = styled.nav`
     position: sticky;
-    z-index: 10000;
+    z-index: 8888;
     top: 0;
     left: 0;
     width: 100%;
@@ -136,10 +136,10 @@ export const StyledNavbar = styled.nav`
             }
         }
         .main-links{
-            position: absolute;
+            position: fixed;
             background-color: white;
             flex-direction: column;
-            top: 77.6px;
+            top: 71.45px;
             min-height: calc(100% - 80px);
             height: 100vh;
             width: 100%;
@@ -162,6 +162,9 @@ export const StyledNavbar = styled.nav`
         }
     } 
     @media(max-width:650px) {
+        .main-links{
+            top: 55px;
+        }
         padding-top: .5rem;
         padding-bottom: .5rem;
         .logo-container{
@@ -186,6 +189,9 @@ export const StyledNavbar = styled.nav`
         }
     }
     @media(max-width:550px) {
+        .main-links{
+            top: 52px;
+        }
         .register{
             padding: .4rem .85rem !important ;
         }
